@@ -29,6 +29,9 @@ def getTrip():
         stationId = station.button['title']
         staDic[stationName] = stationId
 
+    # 去找到驗證的csrf
+    csrf = soup.find(id = 'queryForm').find('input',{'name':'_csrf'})['value']
+
     
     
     
