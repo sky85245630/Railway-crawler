@@ -32,6 +32,16 @@ def getTrip():
     # 去找到驗證的csrf
     csrf = soup.find(id = 'queryForm').find('input',{'name':'_csrf'})['value']
 
-    
+    # 建立傳送
+    formData = {
+        'trainTypeList': 'ALL',
+        'transfer': 'ONE',
+        'startOrEndTime': 'true',
+        'startStation':staDic['松山'],
+        'endStation':staDic['新營'],
+        'rideDate':today,
+        'startTime':sTime,
+        'endTime':eTime
+    }
     
     
