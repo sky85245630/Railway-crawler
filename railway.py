@@ -44,4 +44,13 @@ def getTrip():
         'endTime':eTime
     }
     
-    
+    # 去POST資料進去接下來就會到第二頁
+    queryUrl = soup.find(id='queryForm')['action']
+    qResp = requests.post('https://www.railway.gov.tw'+queryUrl,data = formData)
+    qSoup = BeautifulSoup(qResp.text,'html5lib')
+    trs = qSoup.find_all('tr','trip-column')
+    for tr in trs:
+        td = tr.find_all('td')
+        print('%s : %s, %s' & (td[0].ul.li.a.text , td[1].text , td[2].text))
+
+getTrip()
