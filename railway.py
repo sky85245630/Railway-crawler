@@ -18,3 +18,17 @@ def getTrip():
     if resp.status_code != 200:
         print('URL發生錯誤'+url)
         return
+
+    soup = BeautifulSoup(resp.text,'html5lib')
+    # 取得車站名
+    stations = soup.find(id = 'cityBot').ul.find_all('li')
+
+    for station in stations:
+        # 把stationName指向為station按鈕裡面的文字
+        stationName = station.button.text
+        stationId = station.button['title']
+        staDic[stationName] = stationId
+
+    
+    
+    
